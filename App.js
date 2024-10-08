@@ -1,41 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+//React.createElement ==> ReactElement-JS Object ==> HTMLElement(render)
+const heading = React.createElement("h1",{id:"heading"},"Namaste React 🚀!");
 
-//const heading = React.createElement("h1",{id:"heading",xyz:"abc"},"Hello World from React!");
+//JSX (transpiled before it reaches the JS) -PARCEL -Babel(transpiler/JS compiler)
 
-//const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// console.log(heading);
-//root.render(heading);
+//JSX ==>Babel transpiles it into React.createElement ==> ReactElement-JS Object ==> HTMLElement(render)
+const jsxHeading =<h1 className="head">Namaste React using JSX</h1>
 
 
-/**
- * 
- * <div id="parent">
- *      <div id="child">
- *          <h1>I'm an h1 tag</h1>
- *          <h2>I'm an h2 tag</h2>
- *      </div>
- * </div>
- * 
- * ReactElement(Object) ==> HTML(Browser Understands)
- * 
- */
+//React Element
+const title = (
+    <h1 className="head" tabIndex="5">Namaste React using JSX from React Element</h1>
+);
 
-const parent = React.createElement(
-    "div",{id:"parent"},
-    React.createElement(
-        "div",{id:"child"},
-        [React.createElement(
-            "h1",{id:"head"},"Namste React 🚀"
-        ),React.createElement(
-            "h2",{id:"head"},"Akshay Saini"
-        )]
-    )
-)
-console.log(parent);
+//React Component
+const Title = ()=>(
+    <h1 className="head" tabIndex="5">Namaste React using JSX from React Component</h1>
+);
 
-const root =ReactDOM.createRoot(document.getElementById("root"));
+//React Functional Component
+const HeadingComponent = ()=>(<div id="container">
+    {/* component inside component : component composition */}
+    <Title/> 
+    {Title()}
+    {/* React Element */}
+    {title} 
+    <h1>Namaste React Functional Component</h1>
+</div>) 
 
-root.render(parent);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+console.log(heading);
+//root.render(jsxHeading);
+
+root.render(<HeadingComponent/>);
+
